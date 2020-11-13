@@ -11,6 +11,7 @@ weasyprint = "*"
 pyaes256 = {editable = true, path = "."}
 
 [dev-packages]
+setuptools = "*"
 
 [requires]
 python_version = "3.8"
