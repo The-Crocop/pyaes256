@@ -7,6 +7,8 @@ name = "pypi"
 markdown = "*"
 pillow = "*"
 qrcode = "*"
+weasyprint = "*"
+pyaes256 = {editable = true, path = "."}
 
 [dev-packages]
 

@@ -1,7 +1,7 @@
 import unittest
 
-from decrypt import decrypt
-from encrypt import encrypt
+from pyaes256.decrypt import decrypt
+from pyaes256.encrypt import encrypt
 
 
 class Test(unittest.TestCase):

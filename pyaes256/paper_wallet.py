@@ -1,7 +1,24 @@
+import base64
+import os
+from io import BytesIO
+
 import qrcode
 from string import Template
 from weasyprint import HTML
 import markdown as markdown
+import pathlib
+
+
+def pil2datauri(img):
+    """
+    converts PIL image to datauri
+    :param img: PIL image
+    :return: data uri string
+    """
+    data = BytesIO()
+    img.save(data, "png")
+    data64 = base64.b64encode(data.getvalue())
+    return u'data:img/png;base64,'+data64.decode('utf-8')
 
 
 def generate_paper_wallet(cyphertext, output_file='output/paperKey.pdf'):
@@ -11,15 +28,19 @@ def generate_paper_wallet(cyphertext, output_file='output/paperKey.pdf'):
     :param output_file:
     :return:
     """
+    qr_output_path = pathlib.Path().absolute() / 'output'
+    qr_output_path.mkdir(parents=True, exist_ok=True)
+
     img = qrcode.make(cyphertext).resize((250, 250))
-    img.save('output/aes_qr.png')
+    img_data_uri=pil2datauri(img)
     d = {
         'cyphertext': cyphertext,
         'aesMode': 'AES-256 ECB PBKDF2',
-        'qrCodeFile': 'aes_qr.png'
+        'qrCodeFile': img_data_uri
     }
-    with open('printTemplate.md', 'r') as templateFile:
-        with open('styles.css', mode="r", encoding="utf-8") as css_file:
+    with open(os.path.join(os.path.dirname(__file__), 'templates/printTemplate.md'), 'r') as templateFile:
+        with open(os.path.join(os.path.dirname(__file__), 'templates/styles.css'), mode="r", encoding="utf-8") as css_file:
+
             src = Template(templateFile.read())
             result = src.substitute(d)
             input_html = markdown.markdown(
@@ -32,7 +53,7 @@ def generate_paper_wallet(cyphertext, output_file='output/paperKey.pdf'):
                     <head>
                         <style>{css_input}</style>
                     </head>
-                    <body>{input_html}</body>
+                    <body class="markdown-body">{input_html}</body>
                 </html>
                 """
             html = HTML(string=output_html, base_url='output')

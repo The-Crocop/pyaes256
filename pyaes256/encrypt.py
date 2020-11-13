@@ -30,7 +30,7 @@ def encrypt(text, password, salt=None):
     else:
         salt = bytearray.fromhex(salt)
     aes_key = hashlib.pbkdf2_hmac('sha256', password, salt, 10000, 32)
-    print(f'key={aes_key.hex().upper()},\nlen={len(aes_key.hex())}\nsalt={salt.hex()}')
+    print(f'key={aes_key.hex().upper()}\nlen={len(aes_key.hex())}\nsalt={salt.hex()}')
     cypher = AES.new(aes_key, AES.MODE_ECB)
     padded = pad(text.encode())
     msg = cypher.encrypt(padded)
