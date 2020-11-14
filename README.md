@@ -16,6 +16,13 @@ You can do so by executing `pipenv shell`.
 Your command prompt should now indicate that you've activated the virtual environment.
 It can be deactivated by executing `exit`.  
 
+## Build single executable
+run `pyinstaller pyaes256.spec`
+
+the executable will be generated in dist folder.
+Call it with in linux
+`./dist/pyaes256  encrypt --input "hhhhh" --password "abcdefg"`
+
 ## Generating encrypted passwords 
 to encode text with aes256-ecb. Pick any password.
 
