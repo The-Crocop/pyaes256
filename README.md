@@ -9,7 +9,7 @@ Eg. the base64 string starts with "Salt__" followed by 8 bytes of salt. The Rest
 1. Install python >3.8
 1. Install [pipenv](https://pypi.python.org/pypi/pipenv) by executing `pip install pipenv`.
 1. Create a new virtual environment with all dependencies by executing `pipenv install`.
-1. Important: PyAes256 uses weasyprint to generate the pdf with the encrypted QR Code.
+1. Important: PyAes256 uses (weasyprint)[https://github.com/Kozea/WeasyPrint] to generate the pdf with the encrypted QR Code.
    In order to make it work on different Operating Systems it is required  to install certain libraries, that are needed for rendering..
    
    For Windows you have to install the GTK+ Libraries.
