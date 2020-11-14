@@ -9,9 +9,13 @@ pillow = "*"
 qrcode = "*"
 weasyprint = "*"
 pyaes256 = {editable = true, path = "."}
+pyinstaller = "*"
+cffi = "*"
+cairocffi = "*"
 
 [dev-packages]
 setuptools = "*"
+pyinstaller = "*"
 
 [requires]
 python_version = "3.8"

@@ -44,7 +44,13 @@ def generate_paper_wallet(cyphertext, output_file='output/paperKey.pdf'):
             src = Template(templateFile.read())
             result = src.substitute(d)
             input_html = markdown.markdown(
-                result, extensions=["extra", "meta", "tables"]
+                result, extensions=["markdown.extensions.abbr",
+                                    "markdown.extensions.attr_list",
+                                    "markdown.extensions.def_list",
+                                    "markdown.extensions.fenced_code",
+                                    "markdown.extensions.footnotes",
+                                    "markdown.extensions.tables",
+                                    "markdown.extensions.md_in_html"]
             )
             css_input = css_file.read()
 

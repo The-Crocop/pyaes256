@@ -1,4 +1,4 @@
-#PyAes256
+# PyAes256
 
 This project aims to encrypt text with AES-256 and put it into a pdf similar to a paperwallet.
 It is useful for example to encrypt seeds or passowords to a piece of paper and print it.
