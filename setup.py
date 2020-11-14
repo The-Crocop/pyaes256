@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(name='pyaes256',
       version='0.1',
-      install_requires=['markdown', 'pillow', 'qrcode', 'weasyprint', 'cairocffi', 'pycrypto'],
+      install_requires=['markdown', 'pillow', 'qrcode', 'weasyprint', 'cairocffi', 'pycryptodome'],
       author='Marko Nalis',
       author_email="author@email.com",
       url='https://github.com/The-Crocop/pyaes256',

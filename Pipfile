@@ -12,7 +12,7 @@ pyaes256 = {editable = true, path = "."}
 pyinstaller = "*"
 cffi = "*"
 cairocffi = "*"
-pycrypto = "*"
+pycryptodome = "*"
 
 [dev-packages]
 setuptools = "*"
