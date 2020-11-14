@@ -12,10 +12,8 @@ pyaes256 = {editable = true, path = "."}
 pyinstaller = "*"
 cffi = "*"
 cairocffi = "*"
+pycrypto = "*"
 
 [dev-packages]
 setuptools = "*"
 pyinstaller = "*"
-
-[requires]
-python_version = "3.8"
