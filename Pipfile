@@ -17,3 +17,5 @@ pycryptodome = "*"
 [dev-packages]
 setuptools = "*"
 pyinstaller = "*"
+pytest = "*"
+flake8 = "*"

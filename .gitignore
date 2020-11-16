@@ -213,3 +213,5 @@ dmypy.json
 cython_debug/
 
 /output/
+
+paperKey_*

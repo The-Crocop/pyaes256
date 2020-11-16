@@ -19,7 +19,7 @@ def unpad(byte_string):
 def decrypt(encrypted_base64_text, password):
     prefix_bytes = len(SALT_PREFIX) + SALT_LENGTH_BYTES
     decoded_base64_msg = base64.b64decode(encrypted_base64_text)
-    salt = decoded_base64_msg[8:16] # parse salt
+    salt = decoded_base64_msg[8:16]  # parse salt
     encrypted_text = decoded_base64_msg[prefix_bytes:]
     aes_key = hashlib.pbkdf2_hmac('sha256', password, salt, 10000, 32)
     cypher = AES.new(aes_key, AES.MODE_ECB)

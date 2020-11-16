@@ -1,6 +1,5 @@
-import base64
+from datetime import datetime
 import os
-from io import BytesIO
 
 import qrcode
 import tempfile
@@ -10,15 +9,17 @@ import markdown as markdown
 
 
 def generate_paper_wallet(cyphertext, output_file='output/paperKey.pdf'):
-
     """
     generates a pdf containing a QR Code with the cyphertext, the cyphertext as text and explanations on how to decrypt
     :param cyphertext:
     :param output_file:
     :return:
     """
+    now = datetime.now()  # generate timestamp for file generation and to show in generated pdf
+
     if output_file is None:
-        output_file = 'output/paperKey.pdf'
+
+        output_file = f'paperKey_{now.strftime("%Y%m%d%H%M%S")}.pdf'
 
     with tempfile.NamedTemporaryFile(suffix='.png') as fp:
         img = qrcode.make(cyphertext).resize((250, 250))
@@ -27,7 +28,8 @@ def generate_paper_wallet(cyphertext, output_file='output/paperKey.pdf'):
         d = {
             'cyphertext': cyphertext,
             'aesMode': 'AES-256 ECB PBKDF2',
-            'qrCodeFile': fp.name
+            'qrCodeFile': fp.name,
+            'generationDateTime': now.strftime("%m/%d/%Y, %H:%M:%S")
         }
         with open(os.path.join(os.path.dirname(__file__), 'templates/printTemplate.md'), 'r') as templateFile:
             with open(os.path.join(os.path.dirname(__file__), 'templates/styles.css'), mode="r", encoding="utf-8") as css_file:
@@ -63,4 +65,3 @@ def generate_paper_wallet(cyphertext, output_file='output/paperKey.pdf'):
 
                 # targetFile = open("output/paperKey.html", "w", encoding="utf-8", errors="xmlcharrefreplace")
                 # targetFile.write(result)
-

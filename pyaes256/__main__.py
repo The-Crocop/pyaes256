@@ -14,20 +14,21 @@ def validate_salt(value):
 
 
 def run():
-    parser = argparse.ArgumentParser(description='Encrypt and decrypt text with AES-256 ECB and pbkdf2 as base64 like openssl')
+    parser = argparse.ArgumentParser(
+        description='Encrypt and decrypt text with AES-256 ECB and pbkdf2 as base64 like openssl')
     required_args = parser.add_argument_group('required named arguments')
     parser.add_argument('action', choices=['encrypt', 'decrypt'])
     required_args.add_argument('-i', '--input',
-                           metavar='input',
-                           type=str,
-                           required=True,
-                           help='the text to encrypt/decrypt depending on the mode')
+                               metavar='input',
+                               type=str,
+                               required=True,
+                               help='the text to encrypt/decrypt depending on the mode')
 
     required_args.add_argument('-p', '--password',
-                           metavar='password',
-                           type=str,
-                           required=True,
-                           help='the password')
+                               metavar='password',
+                               type=str,
+                               required=True,
+                               help='the password')
     parser.add_argument('-o', '--output',
                         metavar='output',
                         type=str,
