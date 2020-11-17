@@ -21,7 +21,7 @@ def generate_paper_wallet(cyphertext, output_file='output/paperKey.pdf'):
 
         output_file = f'paperKey_{now.strftime("%Y%m%d%H%M%S")}.pdf'
 
-    with tempfile.NamedTemporaryFile(suffix='.png') as fp:
+    with tempfile.NamedTemporaryFile(suffix='.png', delete=False) as fp:
         img = qrcode.make(cyphertext).resize((250, 250))
         img.save(fp)
 
