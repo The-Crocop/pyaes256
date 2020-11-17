@@ -41,10 +41,6 @@ The paper wallet is generated into the output folder.
 ## Generating encrypted passwords 
 to encode text with aes256-ecb. Pick any password.
 
-To run the encryption:
-``
-Example password = `abcdefghijklmnopqrstuvwxyz`
-
 ## Additional Notes
 To verify that this script outputs the same cyphertexts as other tools and it is reproducible you can verify the output with openssl
 
