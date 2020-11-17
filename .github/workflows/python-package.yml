@@ -17,7 +17,7 @@ jobs:
       - run: |
           $version = python setup.py --version
           echo $version
-          echo "VERSION=0.2" >> $GITHUB_ENV
+          echo "$VERSION:0.2" >> $GITHUB_ENV
       - name: Test
         run: echo ${{ env.VERSION }}
       - name: Set up Python ${{ matrix.python-version }}
