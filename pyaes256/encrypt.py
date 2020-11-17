@@ -29,9 +29,11 @@ def encrypt(text, password, salt=None):
         salt = secrets.token_bytes(SALT_LENGTH_BYTES)
     else:
         salt = bytearray.fromhex(salt)
-    aes_key = hashlib.pbkdf2_hmac('sha256', password, salt, 10000, 32)
-    print(f'key={aes_key.hex().upper()}\nlen={len(aes_key.hex())}\nsalt={salt.hex()}')
-    cypher = AES.new(aes_key, AES.MODE_ECB)
+    derived_key = hashlib.pbkdf2_hmac('sha256', password, salt, 10000, 48)
+    aes_key = derived_key[0:32]
+    iv = derived_key[32:48]
+    print(f'key={aes_key.hex().upper()}\niv={iv.hex().upper()}\nlen={len(aes_key.hex())}\nsalt={salt.hex()}')
+    cypher = AES.new(aes_key, AES.MODE_CBC, iv)
     padded = pad(text.encode())
     msg = cypher.encrypt(padded)
     base64_msg = base64.b64encode(SALT_PREFIX + salt + msg)

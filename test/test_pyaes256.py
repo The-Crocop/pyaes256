@@ -21,9 +21,9 @@ def test_decrypt_generated_by_openssl():
     expected_output = 'young cement bubble network scout radio mask output maze alone balance seed party large couch' \
                       ' forget paddle swarm person way yard switch open loop\n'
     password = b'abcdefg'
-    text_to_decrypt = 'U2FsdGVkX191+tp3e4BHcqh0mnsQpXJeOyEmkRR4Rha7bQR3EYsiCZsUrWjHv3LEWXnP1rUheLIxf3cbBNQSzR1M' \
-                      'RIv8CMfXVi81X9VjrsbsvGJuSPT8G9cmG3RHrcWBQUdaHsl8bsHUMNTqgp/AMtivDT1WHkLnNFKYvOj3Fn9rk8gUL3I' \
-                      '7Wl1afbmHcXj939C9VpkRmvjZedsSWCeSLGq4Qnf8le4eBTNx0Ewa2SI='
+    text_to_decrypt = 'U2FsdGVkX1/HEDOl4/ffIWPNVohxRpJleiPUp4VRKxkoBN2YUny/kFVh/3lp06+WAhnUAxsW5yBtGPZLV6e2314pgi' \
+                      'FXbth4nEZ4xOtyNEHlYb3cBcjsDMrmZz4O41iN8lf+Hj6oKl7tD/nnQ5kMFHm1GE+1zDDJ0N0r/M2pvCuSAVXPFWD7' \
+                      'F1NlsVjG9g9I8rz2/9CdpYiM8d7sAa0CeMNRauUqYegMY+X5NlB/rXY='
     # when:
     decrypted_text = decrypt(text_to_decrypt, password)
     # then:

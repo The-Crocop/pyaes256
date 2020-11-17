@@ -21,8 +21,10 @@ def decrypt(encrypted_base64_text, password):
     decoded_base64_msg = base64.b64decode(encrypted_base64_text)
     salt = decoded_base64_msg[8:16]  # parse salt
     encrypted_text = decoded_base64_msg[prefix_bytes:]
-    aes_key = hashlib.pbkdf2_hmac('sha256', password, salt, 10000, 32)
-    cypher = AES.new(aes_key, AES.MODE_ECB)
+    derived_key = hashlib.pbkdf2_hmac('sha256', password, salt, 10000, 48)
+    aes_key = derived_key[0:32]
+    iv = derived_key[32:48]
+    cypher = AES.new(aes_key, AES.MODE_CBC, iv)
     decrypted_with_pad = cypher.decrypt(encrypted_text)
     decrypted = unpad(decrypted_with_pad).decode('utf-8')
     return decrypted

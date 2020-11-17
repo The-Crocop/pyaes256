@@ -30,7 +30,7 @@ def generate_paper_wallet(cyphertext, output_file='output/paperKey.pdf'):
 
             d = {
                 'cyphertext': cyphertext,
-                'aesMode': 'AES-256 ECB PBKDF2',
+                'aesMode': 'AES-256 CBC PBKDF2',
                 'qrCodeFile': fp.name,
                 'generationDateTime': now.strftime("%m/%d/%Y, %H:%M:%S")
             }
