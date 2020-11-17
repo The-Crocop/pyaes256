@@ -14,7 +14,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@main
-      - run: echo ("VERSION=" + python setup.py --version) >> $GITHUB_ENV
+      - run: |
+          $version = python setup.py --version
+          echo "VERSION=$verion" >> $GITHUB_ENV
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
