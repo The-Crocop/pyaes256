@@ -18,7 +18,7 @@ The simplest way is to get the file from pip.
 
 Then execute it with: `pyaes256 --input "myplaintext" --password "mypassword"`
 
-You can download a single executable standalone exe of the latest release [here](/The-Crocop/pyaes256/releases/latest/download/pyaes256-win64-0.1.0.zip)
+You can download a single executable standalone exe of the latest release [here](/The-Crocop/pyaes256/releases)
 
 Unpack it and run:
 `pyaes256.exe --input "myplaintext" --password "mypassword"`
@@ -60,18 +60,18 @@ On Windows:
 The paper wallet is generated into the output folder.
 
 ## Generating encrypted passwords 
-to encode text with aes256-ecb. Pick any password.
+to encode text with aes256-cbc. Pick any password.
 
 ## Additional Notes
 To verify that this script outputs the same cyphertexts as other tools and it is reproducible you can verify the output with openssl
 
 generate with openssl:
-`echo -n 'mysupersecretseedphrase' | openssl enc  -aes-256-ecb -base64 -salt -pbkdf2 -out secretphrase-enc.txt`
+`echo -n 'mysupersecretseedphrase' | openssl enc  -aes-256-cbc -base64 -salt -pbkdf2 -out secretphrase-enc.txt`
 
 Then type in your password.
 
 to decode it run: 
-`openssl enc -aes-256-ecb -d -base64 -salt -pbkdf2  -in secretphrase-enc.txt`
+`openssl enc -aes-256-cbc -d -base64 -salt -pbkdf2  -in secretphrase-enc.txt`
 
 ### Parameters used for AES-256 encryption
 

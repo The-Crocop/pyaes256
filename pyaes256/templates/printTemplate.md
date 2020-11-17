@@ -6,7 +6,7 @@
 
 ![$qrCodeFile]($qrCodeFile?style=centerme)
 
-`The algorithm this was generated with is AES-256-ECB. It is the same openssl is using in this config.`
+`The algorithm this was generated with is AES-256-CBC. It is the same openssl is using in this config.`
 `PBKDF2 is used for derivating the AES key from the password. We were using 10000 iterations`
 
 ####Decryption:
@@ -26,5 +26,5 @@ Hint: `openssl is using "Salt__" to start of the cyphertext followed by 8 bytes 
    Be Careful remove all linebreaks from cyphertext.
    Put one linebreak at the end of the file as indicated above (`\n`). 
     Openssl relies on that else you get an error.
-3. openssl aes-256-ecb -d -base64 -pbkdf2 -in cypher.txt -out cypher_decrypted.txt
+3. openssl aes-256-cbc -d -base64 -pbkdf2 -in cypher.txt -out cypher_decrypted.txt
 4. read content of file `cypher_decrypted.txt`
