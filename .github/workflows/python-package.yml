@@ -16,10 +16,8 @@ jobs:
       - uses: actions/checkout@main
       - run: |
           $version = python setup.py --version
-          echo $version
-          echo "$VERSION:0.2" >> $GITHUB_ENV
-      - name: Test
-        run: echo ${{ env.VERSION }}
+          echo ::set-output name=version::$version
+        id: version
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
@@ -47,7 +45,7 @@ jobs:
       - name: Archive production artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: pyaes256-win64-${{env.VERSION}}
+          name: pyaes256-win64-${{ steps.version.outputs.version }}
           path: dist/pyaes256.exe
 #      - name: Create Release
 #          id: create_release
