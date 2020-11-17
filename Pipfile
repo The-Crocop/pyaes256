@@ -13,9 +13,11 @@ pyinstaller = "*"
 cffi = "*"
 cairocffi = "*"
 pycryptodome = "*"
+atomicwrites = "*"
 
 [dev-packages]
 setuptools = "*"
 pyinstaller = "*"
 pytest = "*"
 flake8 = "*"
+atomicwrites = "*"
