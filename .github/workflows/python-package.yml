@@ -40,8 +40,7 @@ jobs:
           pyinstaller pyaes256.spec
       - run: |
           $version = python setup.py --version
-          echo "VERSION=0.1" >> $GITHUB_ENV
-          id: version
+          echo "VERSION=$version" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf-8 -Append
       - name: Archive production artifacts
         uses: actions/upload-artifact@v2
         with:
