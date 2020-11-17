@@ -23,6 +23,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install pipenv
           pip install --upgrade cffi pywin32-ctypes
+          pip install pefile
           pipenv install --deploy --system
           pipenv install --deploy --system --dev
       - name: Lint with flake8
