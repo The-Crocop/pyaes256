@@ -7,8 +7,6 @@ from getpass import getpass
 
 from pyaes256.decrypt import decrypt
 from pyaes256.encrypt import encrypt
-from pyaes256.paper_wallet import generate_paper_wallet
-
 
 def validate_salt(value):
     if len(value) != 16:
@@ -70,6 +68,7 @@ def run():
         print('encrypting with aes256...')
         encrypted_text = encrypt(args.input, args.password.encode(), args.salt)
         print(f"Encrypted: {encrypted_text}")
+        from pyaes256.paper_wallet import generate_paper_wallet
         generate_paper_wallet(encrypted_text, output_file=args.output)
 
     elif 'decrypt' == args.action:

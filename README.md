@@ -18,7 +18,7 @@ The simplest way is to get the file from pip.
 
 ### Encryption
 
-Then execute it with: `pyaes256 --input "myplaintext"`
+Then execute it with: `pyaes256 encrypt --input "myplaintext"`
 
 Then give it a password and confirm. You can optionally specify a 
 `--password <mypassword>` argument.
