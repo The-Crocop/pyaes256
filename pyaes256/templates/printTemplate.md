@@ -11,12 +11,20 @@
 
 ####Decryption:
 
+##### With Single Exe
+
+1. Download latest release exe file at https://github.com/The-Crocop/pyaes256/releases
+1. Unzip it
+1. Run `pyaes256.exe decrypt --input <base64cyphertext>`
+1. Type password
+
 ##### With Python:
 1. Install Python
-2. Get Code from github `git clone https://github.com/The-Crocop/pyaes256`
-3. pip install all dependencies
-4. Scan or copy over the Cyphertext or scan the QR Code
-5. run: `python aes256.py decrypt --input <cyphertext> --password <password>`
+1. Get Code from github `git clone https://github.com/The-Crocop/pyaes256`
+1. Run `pipenv install`
+1. `pipenv shell`
+1. Scan or copy over the Cyphertext or scan the QR Code
+1. run: `python -m pyaes256 decrypt --input <cyphertext> --password <password>`
 
 ##### With OpenSSL:
 Hint: `openssl is using "Salt__" to start of the cyphertext followed by 8 bytes of the actual salt.`
