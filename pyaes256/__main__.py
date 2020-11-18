@@ -40,17 +40,16 @@ def read_password(confirm=True):
 def run():
     parser = argparse.ArgumentParser(
         description='Encrypt and decrypt text with AES-256 CBC and pbkdf2 as base64 like openssl')
-    required_args = parser.add_argument_group('required named arguments')
     parser.add_argument('action', choices=['encrypt', 'decrypt'])
-    required_args.add_argument('input',
-                               metavar='input',
-                               type=str,
-                               help='the text to encrypt/decrypt depending on the mode')
+    parser.add_argument('input',
+                        metavar='input',
+                        type=str,
+                        help='the text to encrypt/decrypt depending on the mode')
 
-    required_args.add_argument('-p', '--password',
-                               metavar='password',
-                               type=str,
-                               help='the password')
+    parser.add_argument('-p', '--password',
+                        metavar='password',
+                        type=str,
+                        help='the password')
     parser.add_argument('-o', '--output',
                         metavar='output',
                         type=str,
@@ -80,7 +79,7 @@ def run():
     elif 'decrypt' == args.action:
         if args.password is None:
             args.password = read_password(confirm=False)
-        decrypted_text = decrypt(args.input, args.password.encode())
+        decrypted_text = decrypt(args.input, args.password.encode(), show_key=args.show_key is not None)
         print(f"Decrypted: {decrypted_text}")
 
 
