@@ -18,7 +18,7 @@ The simplest way is to get the file from pip.
 
 ### Encryption
 
-Then execute it with: `pyaes256 encrypt --input "myplaintext"`
+Then execute it with: `pyaes256 encrypt myplaintext`
 
 Then give it a password and confirm. You can optionally specify a 
 `--password <mypassword>` argument.
@@ -28,17 +28,20 @@ Then we will not ask you to confirm it.
 To set a different output file use 
 `--output targetFile`
 
+To see the generated key and IV use
+`--showKey`
+
 You can download a single executable standalone exe of the latest release [here](https://github.com/The-Crocop/pyaes256/releases)
 
 Unpack it and run:
-`pyaes256.exe encrypt --input "myplaintext"`
+`pyaes256.exe encrypt "myplaintext"`
 
 As mentioned below it is important to install gtk3 before running the tool!
 You can download it here https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer/releases
 
 ### Decryption
 
-`pyaes256.exe decrypt --input <base64encryptedcyphertext>`
+`pyaes256.exe decrypt <base64encryptedcyphertext>`
 
 Then just type in your password you set when encrypting.
 
@@ -69,10 +72,10 @@ run `pyinstaller pyaes256.spec`
 
 the executable will be generated in dist folder.
 Run it with in linux
-`./dist/pyaes256  encrypt --input "hhhhh"`
+`./dist/pyaes256  encrypt "hhhhh"`
 
 On Windows: 
-`dist/pyaes256.exe  encrypt --input "hhhhh"`
+`dist/pyaes256.exe  encrypt "hhhhh"`
 
 The paper wallet is generated into the output folder.
 

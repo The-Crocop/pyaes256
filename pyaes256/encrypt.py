@@ -17,7 +17,7 @@ def pad(byte_string):
     return byte_string + bytearray([val] * val)
 
 
-def encrypt(text, password, salt=None):
+def encrypt(text, password, salt=None, show_key=False):
     """
     Encrypts a text the same way as running openssl enc
     :param text: your text you want to encrypt
@@ -32,7 +32,9 @@ def encrypt(text, password, salt=None):
     derived_key = hashlib.pbkdf2_hmac('sha256', password, salt, 10000, 48)
     aes_key = derived_key[0:32]
     iv = derived_key[32:48]
-    print(f'key={aes_key.hex().upper()}\niv={iv.hex().upper()}\nlen={len(aes_key.hex())}\nsalt={salt.hex()}')
+    if show_key:
+        print(f'key={aes_key.hex().upper()}\niv={iv.hex().upper()}\nlen={len(aes_key.hex())}')
+    print(f'\nsalt={salt.hex()}')
     cypher = AES.new(aes_key, AES.MODE_CBC, iv)
     padded = pad(text.encode())
     msg = cypher.encrypt(padded)
