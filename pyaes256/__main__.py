@@ -5,8 +5,10 @@ import codecs
 import os
 from getpass import getpass
 
+from pyaes256 import __version__
 from pyaes256.decrypt import decrypt
 from pyaes256.encrypt import encrypt
+
 
 def validate_salt(value):
     if len(value) != 16:
@@ -59,7 +61,7 @@ def run():
                         type=validate_salt,
                         required=False,
                         help='you can optionally specify a salt (in hex format) 16 characters')
-    parser.add_argument('--version', action='version', version=get_version())
+    parser.add_argument('--version', action='version', version=__version__)
 
     args = parser.parse_args()
     if 'encrypt' == args.action:
