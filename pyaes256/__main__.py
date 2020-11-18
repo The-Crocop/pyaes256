@@ -64,6 +64,16 @@ def run():
                         help='shows the key and iv', action='store_const', const=True)
     parser.add_argument('--no-open',
                         help='do not automatically open the pdf', action='store_const', const=True)
+    parser.add_argument('-t', '--title',
+                        metavar='title',
+                        type=str,
+                        required=False,
+                        help='optionally specify a title for the paper wallet')
+    parser.add_argument('-n', '--notes',
+                        metavar='notes',
+                        type=str,
+                        required=False,
+                        help='optionally specify some notes that will be rendered in the notes section')
     parser.add_argument('--version', action='version', version=__version__)
 
     args = parser.parse_args()
@@ -74,7 +84,8 @@ def run():
         encrypted_text = encrypt(args.input, args.password.encode(), args.salt, show_key=args.show_key is not None)
         print(f"Encrypted: {encrypted_text}")
         from pyaes256.paper_wallet import generate_paper_wallet
-        generate_paper_wallet(encrypted_text, output_file=args.output, open_pdf=args.no_open is None)
+        generate_paper_wallet(encrypted_text, output_file=args.output, open_pdf=args.no_open is None, title=args.title,
+                              notes=args.notes)
 
     elif 'decrypt' == args.action:
         if args.password is None:

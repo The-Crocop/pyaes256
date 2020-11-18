@@ -18,7 +18,7 @@ def open_file(filepath):
         subprocess.Popen(['xdg-open', filepath], start_new_session=True)
 
 
-def generate_paper_wallet(cyphertext, output_file='output/paperKey.pdf', open_pdf=False):
+def generate_paper_wallet(cyphertext, output_file='output/paperKey.pdf', open_pdf=False, title=None, notes=None):
     """
     generates a pdf containing a QR Code with the cyphertext, the cyphertext as text and explanations on how to decrypt
     :param open: open the file in the default program
@@ -44,7 +44,9 @@ def generate_paper_wallet(cyphertext, output_file='output/paperKey.pdf', open_pd
                 'cyphertext': cyphertext,
                 'aesMode': 'AES-256 CBC PBKDF2',
                 'qrCodeFile': fp.name,
-                'generationDateTime': now.strftime("%m/%d/%Y, %H:%M:%S")
+                'generationDateTime': now.strftime("%m/%d/%Y, %H:%M:%S"),
+                'title': f"### {title} " if title else '',
+                'notes': f"#### Notes\n{notes}" if notes else ''
             }
             with open(os.path.join(os.path.dirname(__file__), 'templates/printTemplate.md'), 'r') as templateFile:
                 with open(os.path.join(os.path.dirname(__file__), 'templates/styles.css'), mode="r", encoding="utf-8") as css_file:

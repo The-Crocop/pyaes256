@@ -1,4 +1,4 @@
-### ${aesMode} PaperWallet ($generationDateTime) 
+$title - ${aesMode} ($generationDateTime) 
 
 ####Base64 CypherText:
 
@@ -36,3 +36,5 @@ Hint: `openssl is using "Salt__" to start of the cyphertext followed by 8 bytes 
     Openssl relies on that else you get an error.
 3. openssl aes-256-cbc -d -base64 -pbkdf2 -in cypher.txt -out cypher_decrypted.txt
 4. read content of file `cypher_decrypted.txt`
+
+$notes

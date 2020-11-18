@@ -31,6 +31,12 @@ To set a different output file use
 To see the generated key and IV use
 `--show-key`
 
+You can add a title to the output pdf with 
+`--title My Super Secret Password`
+
+You can add notes to the notes sections with 
+`--notes "The first rule of fight club is. You do not talk about fight club"`
+
 The pdf will automatically open. To not open the generated pdf automatically use 
 `--no-open`
 
@@ -95,6 +101,12 @@ Then type in your password.
 
 to decode it run: 
 `openssl enc -aes-256-cbc -d -base64 -salt -pbkdf2  -in secretphrase-enc.txt`
+
+### Docker
+
+You can also use the docker container if you need it to be more isolated.
+
+`docker run -v $PWD:/out -it nalisdev/pyaes256 encrypt helloworld --no-open --output out/docker1.pdf`
 
 ### Parameters used for AES-256 encryption
 
