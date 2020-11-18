@@ -29,7 +29,10 @@ To set a different output file use
 `--output targetFile`
 
 To see the generated key and IV use
-`--showKey`
+`--show-key`
+
+The pdf will automatically open. To not open the generated pdf automatically use 
+`--no-open`
 
 You can download a single executable standalone exe of the latest release [here](https://github.com/The-Crocop/pyaes256/releases)
 

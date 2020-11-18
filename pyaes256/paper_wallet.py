@@ -1,3 +1,5 @@
+import platform
+import subprocess
 from datetime import datetime
 import os
 
@@ -7,11 +9,21 @@ from weasyprint import HTML
 import markdown as markdown
 
 
-def generate_paper_wallet(cyphertext, output_file='output/paperKey.pdf'):
+def open_file(filepath):
+    if platform.system() == 'Darwin':       # macOS
+        subprocess.Popen(['open', filepath], start_new_session=True)
+    elif platform.system() == 'Windows':    # Windows
+        os.startfile(filepath)
+    else:                                   # linux variants
+        subprocess.Popen(['xdg-open', filepath], start_new_session=True)
+
+
+def generate_paper_wallet(cyphertext, output_file='output/paperKey.pdf', open_pdf=False):
     """
     generates a pdf containing a QR Code with the cyphertext, the cyphertext as text and explanations on how to decrypt
+    :param open: open the file in the default program
     :param cyphertext:
-    :param output_file:
+    :param output_file: if True opens the file in your default pdf program
     :return:
     """
     now = datetime.now()  # generate timestamp for file generation and to show in generated pdf
@@ -63,6 +75,8 @@ def generate_paper_wallet(cyphertext, output_file='output/paperKey.pdf'):
                     html.write_pdf(output_file)
                     print("--------------------")
                     print(f"encrypted paper generated in\n file://{os.path.abspath(output_file)}")
+                    if open_pdf:
+                        open_file(os.path.abspath(output_file))
 
     finally:
         os.remove(qr_tmp_filename)
