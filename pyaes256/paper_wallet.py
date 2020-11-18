@@ -45,7 +45,7 @@ def generate_paper_wallet(cyphertext, output_file='output/paperKey.pdf', open_pd
                 'aesMode': 'AES-256 CBC PBKDF2',
                 'qrCodeFile': fp.name,
                 'generationDateTime': now.strftime("%m/%d/%Y, %H:%M:%S"),
-                'title': f"### {title} " if title else '',
+                'title': f"### {title} " if title else '###',
                 'notes': f"#### Notes\n{notes}" if notes else ''
             }
             with open(os.path.join(os.path.dirname(__file__), 'templates/printTemplate.md'), 'r') as templateFile:
