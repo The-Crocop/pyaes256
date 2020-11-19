@@ -1,4 +1,4 @@
-$title - ${aesMode} ($generationDateTime) 
+$title ${aesMode} ($generationDateTime) 
 
 ####Base64 CypherText:
 

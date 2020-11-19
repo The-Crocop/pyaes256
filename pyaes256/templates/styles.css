@@ -30,7 +30,7 @@
 }
 
 html {
-    font-family: system-ui;
+    font-family: serif !important;
     font-size: 15px;
     line-height: 1.5;
 }
