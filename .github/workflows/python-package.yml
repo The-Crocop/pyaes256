@@ -106,7 +106,7 @@ jobs:
           context: ./
           file: ./Dockerfile
           push: true
-          tags: nalisdev/pyaes256:${{ env.VERSION }}
+          tags: nalisdev/pyaes256:latest
 
   release:
     needs: [build-linux, build-windows]
@@ -126,6 +126,7 @@ jobs:
           echo "VERSION=$(cat VERSION.txt)" >> GITHUB_ENV
       - name: compress assets
         run: |
+          mv dist/pyaes256 pyaes256
           zip pyaes256-win64-$VERSION.zip pyaes256.exe
           tar -zcvf pyaes256-win64-$VERSION.tar.gz pyaes256
       - name: Create Release
