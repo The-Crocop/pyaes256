@@ -82,10 +82,9 @@ jobs:
           pyinstaller pyaes256.spec
       - name: set version
         run: |
-          $version = python setup.py --version
           touch VERSION.txt
-          echo $version > VERSION.txt
-          echo "VERSION=$version" >> GITHUB_ENV
+          echo $(python setup.py --version) > VERSION.txt
+          echo "VERSION=$(python setup.py --version)" >> GITHUB_ENV
       - name: Archive production artifacts
         uses: actions/upload-artifact@v2
         with:
