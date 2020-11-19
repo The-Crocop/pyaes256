@@ -84,7 +84,7 @@ jobs:
         run: |
           touch VERSION.txt
           echo $(python setup.py --version) > VERSION.txt
-          echo "VERSION=$(python setup.py --version)" >> GITHUB_ENV
+          echo "VERSION=$(python setup.py --version)" >> $GITHUB_ENV
       - name: Archive production artifacts
         uses: actions/upload-artifact@v2
         with:
@@ -106,7 +106,7 @@ jobs:
           context: ./
           file: ./Dockerfile
           push: true
-          tags: nalisdev/pyaes256:latest
+          tags: nalisdev/pyaes256:${{ env.VERSION }}
 
   release:
     needs: [build-linux, build-windows]
@@ -123,7 +123,7 @@ jobs:
       - name: set version
         run: |
           cat VERSION.txt
-          echo "VERSION=$(cat VERSION.txt)" >> GITHUB_ENV
+          echo "VERSION=$(cat VERSION.txt)" >> $GITHUB_ENV
       - name: compress assets
         run: |
           mv dist/pyaes256 pyaes256
