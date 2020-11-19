@@ -1,6 +1,11 @@
 from setuptools import setup, find_packages
+from os import path
 import codecs
 import os.path
+
+this_directory = path.abspath(path.dirname(__file__))
+with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
+    long_description = f.read()
 
 
 def read(rel_path):
@@ -24,7 +29,14 @@ setup(name='pyaes256',
       author='Marko Nalis',
       author_email="marko@nalis.dev",
       url='https://github.com/The-Crocop/pyaes256',
+      description="Encrypt text with AES256 and create a pdf with QR code that can be printed and stored",
+      long_description=long_description,
+      long_description_content_type='text/markdown',
       packages=find_packages(),
+      package_data={
+          'pyaes256': ['templates/*']
+      },
+      license='MIT',
       include_package_data=True,
       entry_points={
           'console_scripts': ['pyaes256=pyaes256.__main__:run']

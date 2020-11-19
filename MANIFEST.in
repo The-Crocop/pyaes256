@@ -1,0 +1,2 @@
+include pyaes256/templates/*.md
+include pyaes256/templates/*.css
