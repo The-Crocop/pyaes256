@@ -87,12 +87,12 @@ jobs:
           echo $version > VERSION.txt
           echo "VERSION=$version" >> GITHUB_ENV
       - name: Archive production artifacts
-          uses: actions/upload-artifact@v2
-          with:
-            name: pyaes256-linux64
-            path: |
-              dist/pyaes256
-              VERSION.txt
+        uses: actions/upload-artifact@v2
+        with:
+          name: pyaes256-linux64
+          path: |
+            dist/pyaes256
+            VERSION.txt
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
       - name: Login to Dockerhub
@@ -142,24 +142,22 @@ jobs:
             draft: false
             prerelease: false
       - name: Upload Windows Release Asset
-          id: upload-windows-release-asset
-          uses: actions/upload-release-asset@v1
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          with:
-            upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-            asset_path: pyaes256-win64-${{ env.VERSION }}.zip
-            asset_name: pyaes256-win64-${{ env.VERSION }}.zip
-            asset_content_type: application/zip
+        id: upload-windows-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          asset_path: pyaes256-win64-${{ env.VERSION }}.zip
+          asset_name: pyaes256-win64-${{ env.VERSION }}.zip
+          asset_content_type: application/zip
       - name: Upload Linux Release Asset
-          id: upload-linux-release-asset
-          uses: actions/upload-release-asset@v1
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          with:
-            upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-            asset_path: pyaes256-linux64-${{ env.VERSION }}.tar.gz
-            asset_name: pyaes256-linux64-${{ env.VERSION }}.tar.gz
-            asset_content_type: application/gzip
-
-
+        id: upload-linux-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          asset_path: pyaes256-linux64-${{ env.VERSION }}.tar.gz
+          asset_name: pyaes256-linux64-${{ env.VERSION }}.tar.gz
+          asset_content_type: application/gzip
