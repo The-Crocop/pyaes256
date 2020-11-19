@@ -116,31 +116,31 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download artifact from linux build job
-          uses: actions/download-artifact@v2
-          with:
-            name: pyaes256-linux64
+        uses: actions/download-artifact@v2
+        with:
+          name: pyaes256-linux64
       - name: Download artifact from windows build job
-          uses: actions/download-artifact@v2
-          with:
-            name: pyaes256-win64
+        uses: actions/download-artifact@v2
+        with:
+          name: pyaes256-win64
       - name: set version
-          run: |
-            cat VERSION.txt
-            echo "VERSION=$(cat VERSION.txt)" >> GITHUB_ENV
+        run: |
+          cat VERSION.txt
+          echo "VERSION=$(cat VERSION.txt)" >> GITHUB_ENV
       - name: compress assets
-          run: |
-            zip pyaes256-win64-$VERSION.zip pyaes256.exe
-            tar -zcvf pyaes256-win64-$VERSION.tar.gz pyaes256
+        run: |
+          zip pyaes256-win64-$VERSION.zip pyaes256.exe
+          tar -zcvf pyaes256-win64-$VERSION.tar.gz pyaes256
       - name: Create Release
-          id: create_release
-          uses: actions/create-release@v1
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          with:
-            tag_name: v${{ env.VERSION }}
-            release_name: Release ${{ env.VERSION }}
-            draft: false
-            prerelease: false
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ env.VERSION }}
+          release_name: Release ${{ env.VERSION }}
+          draft: false
+          prerelease: false
       - name: Upload Windows Release Asset
         id: upload-windows-release-asset
         uses: actions/upload-release-asset@v1
