@@ -107,9 +107,7 @@ jobs:
           context: ./
           file: ./Dockerfile
           push: true
-          tags:
-            - nalisdev/pyaes256:latest
-            - nalisdev/pyaes256:${{ env.VERSION }}]
+          tags: [nalisdev/pyaes256:latest, nalisdev/pyaes256:${{ env.VERSION }}]
 
   release:
     needs: [build-linux, build-windows]
