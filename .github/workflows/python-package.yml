@@ -78,14 +78,14 @@ jobs:
           python setup.py sdist bdist_wheel
           twine upload dist/*
       - name: Create binary
-          run: |
-            pyinstaller pyaes256.spec
+        run: |
+          pyinstaller pyaes256.spec
       - name: set version
-          run: |
-            $version = python setup.py --version
-            touch VERSION.txt
-            echo $version > VERSION.txt
-            echo "VERSION=$version" >> GITHUB_ENV
+        run: |
+          $version = python setup.py --version
+          touch VERSION.txt
+          echo $version > VERSION.txt
+          echo "VERSION=$version" >> GITHUB_ENV
       - name: Archive production artifacts
           uses: actions/upload-artifact@v2
           with:
