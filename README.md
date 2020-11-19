@@ -16,15 +16,44 @@ Additionally, crosscheck with openssl if you can decrypt your encrypted data bef
 The simplest way is to get the file from pip.
 `pip install pyaes256`
 
-Then execute it with: `pyaes256 --input "myplaintext" --password "mypassword"`
+### Encryption
 
-You can download a single executable standalone exe of the latest release [here](/The-Crocop/pyaes256/releases)
+Then execute it with: `pyaes256 encrypt myplaintext`
+
+Then give it a password and confirm. You can optionally specify a 
+`--password <mypassword>` argument.
+
+Then we will not ask you to confirm it. 
+
+To set a different output file use 
+`--output targetFile`
+
+To see the generated key and IV use
+`--show-key`
+
+You can add a title to the output pdf with 
+`--title My Super Secret Password`
+
+You can add notes to the notes sections with 
+`--notes "The first rule of fight club is. You do not talk about fight club"`
+
+The pdf will automatically open. To not open the generated pdf automatically use 
+`--no-open`
+
+You can download a single executable standalone exe of the latest release [here](https://github.com/The-Crocop/pyaes256/releases)
 
 Unpack it and run:
-`pyaes256.exe --input "myplaintext" --password "mypassword"`
+`pyaes256.exe encrypt "myplaintext"`
 
 As mentioned below it is important to install gtk3 before running the tool!
 You can download it here https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer/releases
+
+### Decryption
+
+`pyaes256.exe decrypt <base64encryptedcyphertext>`
+
+Then just type in your password you set when encrypting.
+
 
 ## Getting Started
 1. Install python >3.8
@@ -52,10 +81,10 @@ run `pyinstaller pyaes256.spec`
 
 the executable will be generated in dist folder.
 Run it with in linux
-`./dist/pyaes256  encrypt --input "hhhhh" --password "abcdefg"`
+`./dist/pyaes256  encrypt "hhhhh"`
 
 On Windows: 
-`dist/pyaes256.exe  encrypt --input "hhhhh" --password "abcdefg"`
+`dist/pyaes256.exe  encrypt "hhhhh"`
 
 The paper wallet is generated into the output folder.
 
@@ -72,6 +101,12 @@ Then type in your password.
 
 to decode it run: 
 `openssl enc -aes-256-cbc -d -base64 -salt -pbkdf2  -in secretphrase-enc.txt`
+
+### Docker
+
+You can also use the docker container if you need it to be more isolated.
+
+`docker run -v $PWD:/out -it nalisdev/pyaes256 encrypt helloworld --no-open --output out/docker1.pdf`
 
 ### Parameters used for AES-256 encryption
 
