@@ -32,7 +32,7 @@ To see the generated key and IV use
 `--show-key`
 
 You can add a title to the output pdf with 
-`--title My Super Secret Password`
+`--title "My Super Secret Password"`
 
 You can add notes to the notes sections with 
 `--notes "The first rule of fight club is. You do not talk about fight club"`
@@ -43,7 +43,13 @@ The pdf will automatically open. To not open the generated pdf automatically use
 You can download a single executable standalone exe of the latest release [here](https://github.com/The-Crocop/pyaes256/releases)
 
 Unpack it and run:
-`pyaes256.exe encrypt "myplaintext"`
+windows: `pyaes256.exe encrypt "myplaintext"`
+
+Linux: the file is located in the bin folder, unpack it and extract from bin folder:
+```
+chmod a+x pyaes256
+./pyaes256 encrypt aaaa
+```
 
 As mentioned below it is important to install gtk3 before running the tool!
 You can download it here https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer/releases

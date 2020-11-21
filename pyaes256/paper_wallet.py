@@ -1,5 +1,6 @@
 import platform
 import subprocess
+import webbrowser
 from datetime import datetime
 import os
 
@@ -15,7 +16,7 @@ def open_file(filepath):
     elif platform.system() == 'Windows':    # Windows
         os.startfile(filepath)
     else:                                   # linux variants
-        subprocess.Popen(['xdg-open', filepath], start_new_session=True)
+        webbrowser.open(filepath)
 
 
 def generate_paper_wallet(cyphertext, output_file='output/paperKey.pdf', open_pdf=False, title=None, notes=None):
