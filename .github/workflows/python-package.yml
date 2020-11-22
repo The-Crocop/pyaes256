@@ -132,7 +132,7 @@ jobs:
           echo "VERSION=$(cat VERSION.txt)" >> $GITHUB_ENV
       - name: compress assets
         run: |
-          mv dist/pyaes256 pyaes256
+          mv bin/pyaes256 pyaes256
           zip pyaes256-win64-$VERSION.zip pyaes256.exe
           tar -zcvf pyaes256-linux64-$VERSION.tar.gz pyaes256
       - name: Create Release
